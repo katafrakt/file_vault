@@ -1,15 +1,12 @@
 # FileVault
 
-🌸 Welcome to your Hanami app!
+🌸 Welcome to your JRuby Hanami app!
 
-## Getting started
+## Set up
 
-- Set up the project with `bin/setup`
-- Run the server with `bin/dev`
-- View the app at [http://localhost:2300](http://localhost:2300)
-- Run the tests with `bundle exec rake`
+### Install Java dependencies
 
-## Useful links
-
-- [Hanami](https://hanakai.org/hanami)
-- [Hanami guides](https://hanakai.org/learn#hanami)
+```sh
+gem install ruby-maven
+rmvn dependency:copy-dependencies -DoutputDirectory=vendor/jars
+```

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "tika/parser"
+
 module FileVault
   module Actions
     module Files
@@ -13,6 +15,8 @@ module FileVault
           attacher.finalize
 
           file_repo.create(attacher)
+
+          p Tika::Parser.new.extract(Hanami.app.root.join("public/uploads", attacher.data["id"]))
 
           response.redirect("/")
         end
