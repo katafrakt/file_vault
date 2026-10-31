@@ -2,6 +2,7 @@
 
 module FileVault
   class Routes < Hanami::Routes
-    # Add your routes here. See https://hanakai.org/learn/hanami/routing/ for details.
+    post "/upload", to: "files.upload"
+    get "/", to: "files.list"
   end
 end
