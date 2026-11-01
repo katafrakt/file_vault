@@ -1,19 +1,30 @@
-<h1>Your Vault</h1>
+<div class="grid-row">
+  <div class="grid-col-8 grid-col-medium-4 grid-col-small-4">
+    <h1 class="p-heading--1">Your Vault</h1>
 
-<form action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="Upload new file">
-</form>
-
-<% files.each do |file| %>
-  <div>
-    <p><%= file.filename %></p>
-    <ul>
-      <% if file.title %><li>Title: <%= file.title %></li><% end %>
-      <% if file.author %><li>Author: <%= file.author %></li><% end %>
-      <% if file.description %><li>Description: <%= file.description %></li><% end %>
-      <% if file.pages %><li>Pages: <%= file.pages %></li><% end %>
-      <% if file.image_width && file.image_height %><li>Image size: <%= file.image_width %>x<%= file.image_height %> px</li><% end %>
-    </ul>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit" class="p-button--positive" value="Upload new file">
+    </form>
   </div>
-<% end %>
+</div>
+
+<div class="grid-row">
+  <% files.each do |file| %>
+    <div class="grid-col-2 grid-col-medium-2 grid-col-small-2">
+      <div class="p-card">
+        <h5 class="p-heading--5"><%= file.filename %></h5>
+        <hr class="u-sv1">
+        <div class="p-card__content">
+          <ul>
+            <% if file.title %><li>Title: <%= file.title %></li><% end %>
+            <% if file.author %><li>Author: <%= file.author %></li><% end %>
+            <% if file.description %><li>Description: <%= file.description %></li><% end %>
+            <% if file.pages %><li>Pages: <%= file.pages %></li><% end %>
+            <% if file.image_width && file.image_height %><li>Image size: <%= file.image_width %>x<%= file.image_height %> px</li><% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

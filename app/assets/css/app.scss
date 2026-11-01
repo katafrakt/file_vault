@@ -1,0 +1,22 @@
+@import "vanilla-framework";
+@include vanilla;
+
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+// stretch cards to fill their grid cell
+.grid-row > [class*='grid-col'] > .p-card {
+  height: 100%;
+}
+
+// Vanilla's grid only sets a column gutter (grid-gap: 0 <gutter>), so add
+// vertical spacing between wrapped rows and between stacked grid rows
+.grid-row {
+  row-gap: $spv--large;
+}
+
+.grid-row + .grid-row {
+  margin-top: $spv--large;
+}

@@ -4,6 +4,9 @@
   "type": "module",
   "dependencies": {
     "esbuild": "^0.28.1",
-    "hanami-assets": "^3.0.0"
+    "esbuild-sass-plugin": "^3.7.0",
+    "hanami-assets": "^3.0.0",
+    "sass": "^1.107.1",
+    "vanilla-framework": "^4.61.0"
   }
 }
