@@ -6,7 +6,7 @@ module FileVault
   module Actions
     module Files
       class Upload < FileVault::Action
-        include Deps["repos.file_repo"]
+        include Deps["repos.file_repo", "uploader", "tika"]
 
         def handle(request, response)
           attacher = Shrine::Attacher.new
@@ -14,9 +14,10 @@ module FileVault
           attacher.store
           attacher.finalize
 
-          file_repo.create(attacher)
+          stored_path = uploader.storages[:store].path(attacher.data["id"])
+          extracted = tika.extract(stored_path)
 
-          p Tika::Parser.new.extract(Hanami.app.root.join("public/uploads", attacher.data["id"]))
+          file_repo.create(attacher, extracted)
 
           response.redirect("/")
         end
