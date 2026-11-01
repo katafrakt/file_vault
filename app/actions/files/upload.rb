@@ -1,24 +1,16 @@
 # frozen_string_literal: true
 
-require "tika/parser"
-
 module FileVault
   module Actions
     module Files
       class Upload < FileVault::Action
-        include Deps["repos.file_repo", "uploader", "tika"]
+        include Deps["operations.upload_file"]
 
         def handle(request, response)
-          attacher = Shrine::Attacher.new
+          attacher = Uploaders::FileUploader::Attacher.new
           attacher.assign(request.params[:file])
-          attacher.store
-          attacher.finalize
 
-          stored_path = uploader.storages[:store].path(attacher.data["id"])
-          extracted = tika.extract(stored_path)
-
-          file_repo.create(attacher, extracted)
-
+          upload_file.call(attacher)
           response.redirect("/")
         end
       end

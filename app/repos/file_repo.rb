@@ -3,20 +3,20 @@
 module FileVault
   module Repos
     class FileRepo < FileVault::DB::Repo
-      def create(attacher, extracted = {})
+      EXTRACTED_KEYS = %i[title author description pages image_width image_height].freeze
+
+      def create(attacher)
         metadata = attacher.data["metadata"]
 
         files.command(:create).call(
           filename: metadata["filename"],
           size: metadata["size"],
-          internal_filename: attacher.data["id"],
-          title: extracted[:title],
-          author: extracted[:author],
-          description: extracted[:description],
-          pages: extracted[:pages],
-          image_width: extracted[:image_width],
-          image_height: extracted[:image_height]
+          internal_filename: attacher.data["id"]
         )
+      end
+
+      def add_extracted_data(record, extracted)
+        files.by_pk(record.id).changeset(:update, extracted.slice(*EXTRACTED_KEYS)).commit
       end
 
       def all

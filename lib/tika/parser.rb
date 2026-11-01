@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "java"
+Dir[File.expand_path("../../vendor/jars/*.jar", __dir__)].sort.each { |jar| require jar }
+
 module Tika
   java_import "org.apache.tika.parser.AutoDetectParser"
   java_import "org.apache.tika.metadata.Metadata"
