@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source "https://gem.coop"
 
 gem "hanami", github: "hanami/hanami"
@@ -24,8 +25,8 @@ gem "shrine", "~> 3.6"
 gem "marcel"
 
 # released version does not support JRuby 10.1 (?)
-#gem 'jbundler', github: "chadlwilson/jbundler", branch: "jruby-10.1"
-#gem "jar-dependencies", platform: :jruby
+# gem 'jbundler', github: "chadlwilson/jbundler", branch: "jruby-10.1"
+# gem "jar-dependencies", platform: :jruby
 
 group :development do
   gem "hanami-webconsole", github: "hanami/hanami-webconsole"

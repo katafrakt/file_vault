@@ -4,8 +4,3 @@ require "hanami/rake_tasks"
 
 # Add your custom rake tasks to the lib/tasks directory
 Rake.add_rakelib "lib/tasks"
-
-require 'jars/installer'
-task :install_jars do
-  Jars::Installer.vendor_jars!
-end
