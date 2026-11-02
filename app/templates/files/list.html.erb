@@ -2,9 +2,11 @@
   <div class="grid-col-8 grid-col-medium-4 grid-col-small-4">
     <h1 class="p-heading--1">Your Vault</h1>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file">
-      <input type="submit" class="p-button--positive" value="Upload new file">
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="p-form p-form--inline">
+      <div class="p-form__group">
+        <input type="file" name="file">
+        <input type="submit" class="p-button--positive" value="Upload new file">
+      </div>
     </form>
   </div>
 </div>
