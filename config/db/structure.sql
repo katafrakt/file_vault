@@ -11,8 +11,10 @@ CREATE TABLE `files`(
   `description` text NULL,
   `pages` integer NULL,
   `image_width` integer NULL,
-  `image_height` integer NULL
+  `image_height` integer NULL,
+  `extracted_text` text NULL
 );
 INSERT INTO schema_migrations (filename) VALUES
 ('20261031132409_add_files.rb'),
-('20261101090833_add_metadata_to_files.rb');
+('20261101090833_add_metadata_to_files.rb'),
+('20261102120000_add_extracted_text_to_files.rb');

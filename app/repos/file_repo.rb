@@ -16,7 +16,17 @@ module FileVault
       end
 
       def add_extracted_data(record, extracted)
-        files.by_pk(record.id).changeset(:update, extracted.slice(*EXTRACTED_KEYS)).commit
+        data = extracted.slice(*EXTRACTED_KEYS).merge(extracted_text: extracted[:text])
+        files.by_pk(record.id).changeset(:update, data).commit
+      end
+
+      def search(term, fulltext: false)
+        pattern = "%#{term.gsub(/[\\%_]/) { |char| "\\#{char}" }}%"
+        files.where {
+          match = filename.ilike(pattern) | title.ilike(pattern) | author.ilike(pattern)
+          match |= extracted_text.ilike(pattern) if fulltext
+          match
+        }.to_a
       end
 
       def all
@@ -25,3 +35,16 @@ module FileVault
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

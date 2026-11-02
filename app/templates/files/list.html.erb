@@ -2,12 +2,27 @@
   <div class="grid-col-8 grid-col-medium-4 grid-col-small-4">
     <h1 class="p-heading--1">Your Vault</h1>
 
+    <div>
     <form action="/upload" method="POST" enctype="multipart/form-data" class="p-form p-form--inline">
       <div class="p-form__group">
         <input type="file" name="file">
         <input type="submit" class="p-button--positive" value="Upload new file">
       </div>
     </form>
+    </div>
+
+    <div>
+    <form action="/" method="GET" class="p-form p-form--inline">
+      <div class="p-form__group">
+        <input type="search" name="q" value="<%= q %>" placeholder="Search files…">
+        <label class="p-form__control">
+          <input type="checkbox" name="fulltext" value="1" <%= "checked" if fulltext %>>
+          Search in file content
+        </label>
+        <input type="submit" class="p-button--positive" value="Search">
+      </div>
+    </form>
+    </div>
   </div>
 </div>
 
